@@ -1,13 +1,14 @@
 package ru.mvlikhachev.plugins
 
 import io.ktor.server.application.*
-import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import ru.mvlikhachev.domain.usecase.CardUseCase
+import ru.mvlikhachev.domain.usecase.UserUseCase
+import ru.mvlikhachev.routes.UserRoute
 
-fun Application.configureRouting() {
+fun Application.configureRouting(userUseCase: UserUseCase, cardUseCase: CardUseCase) {
+
     routing {
-        get("/") {
-            call.respondText("Hello World!")
-        }
+        UserRoute(userUseCase = userUseCase)
     }
 }
